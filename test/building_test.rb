@@ -35,15 +35,16 @@ class ApartmentTest < Minitest::Test
 
     renter1 = mock
     renter2 = mock
-
+    #used stubs here because these can be called multiple times
+    #under normal circumstances
     apartment1 = mock
-    apartment1.expects(:renter).returns(renter1)
+    apartment1.stubs(:renter).returns(renter1)
 
     apartment2 = mock
-    apartment2.expects(:renter).returns(renter2)
+    apartment2.stubs(:renter).returns(renter2)
 
     apartment3 = mock
-    apartment3.expects(:renter).returns(false)
+    apartment3.stubs(:renter).returns(nil)
 
     @building.add_unit(apartment1)
     @building.add_unit(apartment2)
