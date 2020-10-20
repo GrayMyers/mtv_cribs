@@ -9,10 +9,11 @@ class Building
   end
 
   def renters
-    renter_array = @units.map do |unit|
+    renter_array = @units.filter{|unit| unit.renter} #removes units with no renter
+
+    renter_array.map do |unit|
       unit.renter
     end
-    renter_array.filter{|renter| renter} #removes nil elements
   end
 
   def average_rent
@@ -22,7 +23,7 @@ class Building
     if @units.length > 0
       total_rent/units.length
     else
-      0
+      0 #dividing by zero is bad
     end
   end
 end
