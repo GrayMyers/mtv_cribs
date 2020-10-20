@@ -41,9 +41,15 @@ class Building
   end
 
   def units_by_number_of_bedrooms
-    @units.group_by do |unit|
+    return_hash = @units.group_by do |unit|
       unit.bedrooms
     end
+    return_hash.map do |key,value|
+      value.map do |unit|
+        unit.number
+      end
+    end
+    return_hash
   end
 
   def annual_breakdown
