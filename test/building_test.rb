@@ -24,9 +24,25 @@ class ApartmentTest < Minitest::Test
     assert_equal [], @building.units
     apartment1 = mock
     apartment2 = mock
+
     @building.add_unit(apartment1)
     @building.add_unit(apartment2)
     assert_equal [apartment1,apartment2], @building.units
   end
 
+  def test_it_tracks_renters
+    assert_equal [], @building.renters
+
+    renter1 = mock
+    renter2 = mock
+
+    apartment1 = mock
+    apartment1.expects(:renter).returns(renter1)
+
+    apartment2 = mock
+    apartment2.expects(:renter).returns(renter2)
+    
+    @building.add_unit(apartment1)
+    @building.add_unit(apartment2)
+    assert_equal [renter1,renter2], @building.renters
 end
