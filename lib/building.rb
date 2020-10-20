@@ -39,4 +39,10 @@ class Building
       nil
     end
   end
+
+  def units_by_number_of_bedrooms
+    @units.group_by do |unit|
+      unit.bedrooms
+    end
+  end
 end
