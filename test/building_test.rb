@@ -43,11 +43,28 @@ class ApartmentTest < Minitest::Test
     apartment2.expects(:renter).returns(renter2)
 
     apartment3 = mock
-    apartment3.expects(:renter).returns(nil)
+    apartment3.expects(:renter).returns(false)
 
     @building.add_unit(apartment1)
     @building.add_unit(apartment2)
     @building.add_unit(apartment3)
     assert_equal [renter1,renter2], @building.renters
+  end
+
+  def test_it_has_average_rent
+    assert_equal 0, @building.average_rent
+    apartment1 = mock
+    apartment1.expects(:monthly_rent).returns(500)
+
+    apartment2 = mock
+    apartment2.expects(:monthly_rent).returns(1000)
+
+    apartment3 = mock
+    apartment3.expects(:monthly_rent).returns(1500)
+
+    @building.add_unit(apartment1)
+    @building.add_unit(apartment2)
+    @building.add_unit(apartment3)
+    assert_equal 1000, @building.average_rent
   end
 end
