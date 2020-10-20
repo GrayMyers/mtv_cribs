@@ -1,5 +1,6 @@
 require "minitest/autorun"
 require 'minitest/pride'
+require "mocha/minitest"
 require "./lib/apartment.rb"
 
 class ApartmentTest < Minitest::Test
