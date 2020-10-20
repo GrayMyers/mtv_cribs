@@ -136,21 +136,26 @@ class ApartmentTest < Minitest::Test
     apartment1 = mock
     apartment1.stubs(:renter).returns(renter1)
     apartment1.stubs(:bedrooms).returns(2)
+    apartment1.stubs(:number).returns("A1")
 
     apartment2 = mock
     apartment2.stubs(:renter).returns(renter2)
     apartment2.stubs(:bedrooms).returns(2)
+    apartment1.stubs(:number).returns("B2")
+
 
     apartment3 = mock
     apartment3.stubs(:renter).returns(nil)
     apartment3.stubs(:bedrooms).returns(1)
+    apartment1.stubs(:number).returns("C1")
+
 
     @building.add_unit(apartment1)
     @building.add_unit(apartment2)
     @building.add_unit(apartment3)
     expected_hash = {
-      2 => [apartment1,apartment2],
-      1 => [apartment3]
+      2 => ["A1","B2"],
+      1 => ["C1"]
     }
     assert_equal expected_hash, @building.units_by_number_of_bedrooms
   end
