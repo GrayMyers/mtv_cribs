@@ -41,8 +41,13 @@ class ApartmentTest < Minitest::Test
 
     apartment2 = mock
     apartment2.expects(:renter).returns(renter2)
-    
+
+    apartment3 = mock
+    apartment3.expects(:renter).returns(nil)
+
     @building.add_unit(apartment1)
     @building.add_unit(apartment2)
+    @building.add_unit(apartment3)
     assert_equal [renter1,renter2], @building.renters
+  end
 end
