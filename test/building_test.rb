@@ -34,7 +34,9 @@ class ApartmentTest < Minitest::Test
     assert_equal [], @building.renters
 
     renter1 = mock
+    renter1.stubs(:name).returns("Jessie")
     renter2 = mock
+    renter2.stubs(:name).returns("Jessie")
     #used stubs here because these can be called multiple times
     #under normal circumstances
     apartment1 = mock
@@ -49,7 +51,7 @@ class ApartmentTest < Minitest::Test
     @building.add_unit(apartment1)
     @building.add_unit(apartment2)
     @building.add_unit(apartment3)
-    assert_equal [renter1,renter2], @building.renters
+    assert_equal [renter1.name,renter2.name], @building.renters
   end
 
   def test_it_has_average_rent
@@ -66,10 +68,10 @@ class ApartmentTest < Minitest::Test
     @building.add_unit(apartment1)
     @building.add_unit(apartment2)
     @building.add_unit(apartment3)
-    assert_equal 1000, @building.average_rent
+    assert_equal 1000.0, @building.average_rent
   end
 
-  def test_it_tracks_rented_units
+  def test_it_tracks_units
     assert_equal [], @building.units
     apartment1 = mock
     apartment2 = mock
@@ -79,7 +81,7 @@ class ApartmentTest < Minitest::Test
     assert_equal [apartment1,apartment2], @building.units
   end
 
-  def test_it_tracks_renters
+  def test_it_tracks_rented_units
     assert_equal [], @building.rented_units
 
     renter1 = mock
