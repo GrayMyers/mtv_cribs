@@ -185,26 +185,30 @@ class ApartmentTest < Minitest::Test
 
   def test_it_sorts_rooms_by_renter
     assert_equal Hash.new, @building.rooms_by_renter
-    renter1 = mock
-    renter2 = mock
+    renter1 = mock("r1")
+    renter2 = mock("r2")
     #used stubs here because these can be called multiple times
     #under normal circumstances
-    apartment1 = mock
+    apartment1 = mock("apt1")
     apartment1.stubs(:bedrooms).returns(2)
     apartment1.stubs(:bathrooms).returns(3)
+    apartment1.stubs(:renter).returns(renter1)
     apt1_hash = {
       bedrooms: 2,
       bathrooms: 3
     }
-    apartment2 = mock
-    apartment1.stubs(:bedrooms).returns(1)
-    apartment1.stubs(:bathrooms).returns(1)
+    apartment2 = mock("apt2")
+    apartment2.stubs(:bedrooms).returns(1)
+    apartment2.stubs(:bathrooms).returns(1)
+    apartment2.stubs(:renter).returns(renter2)
     apt2_hash = {
       bedrooms: 1,
       bathrooms: 1
     }
 
-    apartment3 = mock
+    apartment3 = mock("apt3")
+    apartment3.stubs(:renter).returns(nil)
+
 
     @building.add_unit(apartment1)
     @building.add_unit(apartment2)
