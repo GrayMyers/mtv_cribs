@@ -126,7 +126,7 @@ class ApartmentTest < Minitest::Test
   end
 
   def test_it_sorts_units_by_number_of_bedrooms
-    assert_equal {}, @building.units_by_number_of_bedrooms
+    assert_equal Hash.new, @building.units_by_number_of_bedrooms
     renter1 = mock
     renter2 = mock
     #used stubs here because these can be called multiple times
