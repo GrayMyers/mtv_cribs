@@ -183,27 +183,36 @@ class ApartmentTest < Minitest::Test
     assert_equal expected_hash, @building.annual_breakdown
   end
 
-  def rooms_by_renter
+  def test_it_sorts_rooms_by_renter
     assert_equal Hash.new, @building.rooms_by_renter
     renter1 = mock
     renter2 = mock
     #used stubs here because these can be called multiple times
     #under normal circumstances
     apartment1 = mock
-    apartment1.stubs(:renter).returns(renter1)
-
+    apartment1.stubs(:bedrooms).returns(2)
+    apartment1.stubs(:bathrooms).returns(3)
+    apt1_hash = {
+      bedrooms: 2,
+      bathrooms: 3
+    }
     apartment2 = mock
-    apartment2.stubs(:renter).returns(renter2)
+    apartment1.stubs(:bedrooms).returns(1)
+    apartment1.stubs(:bathrooms).returns(1)
+    apt2_hash = {
+      bedrooms: 1,
+      bathrooms: 1
+    }
 
     apartment3 = mock
-    apartment3.stubs(:renter).returns(nil)
 
     @building.add_unit(apartment1)
     @building.add_unit(apartment2)
     @building.add_unit(apartment3)
+
     expected_hash = {
-      renter1 => apartment1,
-      renter2 => apartment2
+      renter1 => apt1_hash,
+      renter2 => apt2_hash
     }
     assert_equal expected_hash, @building.rooms_by_renter
   end
