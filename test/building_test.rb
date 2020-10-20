@@ -124,4 +124,32 @@ class ApartmentTest < Minitest::Test
     @building.add_unit(apartment3)
     assert_equal renter1, @building.renter_with_highest_rent
   end
+
+  def test_it_sorts_units_by_number_of_bedrooms
+    assert_equal {}, @building.units_by_number_of_bedrooms
+    renter1 = mock
+    renter2 = mock
+    #used stubs here because these can be called multiple times
+    #under normal circumstances
+    apartment1 = mock
+    apartment1.stubs(:renter).returns(renter1)
+    apartment1.stubs(:bedrooms).returns(2)
+
+    apartment2 = mock
+    apartment2.stubs(:renter).returns(renter2)
+    apartment2.stubs(:bedrooms).returns(2)
+
+    apartment3 = mock
+    apartment3.stubs(:renter).returns(nil)
+    apartment3.stubs(:bedrooms).returns(1)
+
+    @building.add_unit(apartment1)
+    @building.add_unit(apartment2)
+    @building.add_unit(apartment3)
+    expected_hash = {
+      2 => [apartment1,apartment2],
+      1 => [apartment3]
+    }
+    assert_equal expected_hash, @building.units_by_number_of_bedrooms
+  end
 end
