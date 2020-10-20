@@ -21,7 +21,7 @@ class Building
       unit.monthly_rent
     end
     if @units.length > 0
-      total_rent/@units.length
+      total_rent.to_f/@units.length.to_f
     else
       0 #dividing by zero is bad
     end
