@@ -177,8 +177,8 @@ class ApartmentTest < Minitest::Test
     @building.add_unit(apartment2)
     @building.add_unit(apartment3)
     expected_hash = {
-      "Jessie" => 1000,
-      "Tim" => 500
+      "Jessie" => 12000,
+      "Tim" => 6000
     }
     assert_equal expected_hash, @building.annual_breakdown
   end
