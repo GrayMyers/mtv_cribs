@@ -12,7 +12,7 @@ class Building
     renter_array = @units.filter{|unit| unit.renter} #removes units with no renter
 
     renter_array.map do |unit|
-      unit.renter
+      unit.renter.name
     end
   end
 
