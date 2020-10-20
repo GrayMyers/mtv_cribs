@@ -20,4 +20,13 @@ class ApartmentTest < Minitest::Test
     assert_equal [], @building.units
   end
 
+  def test_it_adds_unit
+    assert_equal [], @building.units
+    apartment1 = mock
+    apartment2 = mock
+    @building.add_unit(apartment1)
+    @building.add_unit(apartment2)
+    assert_equal [apartment1,apartment2], @building.units
+  end
+
 end
