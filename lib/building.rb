@@ -53,4 +53,16 @@ class Building
     end
     return_hash
   end
+
+  def rooms_by_renter
+    return_hash = {}
+    rented_units.each do |unit|
+      room_info_hash = {
+        bathrooms: unit.bathrooms,
+        bedrooms: unit.bedrooms
+      }
+      return_hash[unit.renter] = room_info_hash
+    end
+    return_hash
+  end
 end
