@@ -14,4 +14,15 @@ class Building
     end
     renter_array.filter{|renter| renter} #removes nil elements
   end
+
+  def average_rent
+    total_rent = @units.sum do |unit|
+      unit.monthly_rent
+    end
+    if @units.length > 0
+      total_rent/units.length
+    else
+      0
+    end
+  end
 end
