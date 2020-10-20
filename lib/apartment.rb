@@ -6,4 +6,8 @@ class Apartment
     @bathrooms = info_hash[:bathrooms]
     @bedrooms = info_hash[:bedrooms]
   end
+
+  def add_renter(renter)
+    @renter = renter
+  end
 end
