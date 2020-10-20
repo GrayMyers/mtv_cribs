@@ -122,6 +122,6 @@ class ApartmentTest < Minitest::Test
     @building.add_unit(apartment1)
     @building.add_unit(apartment2)
     @building.add_unit(apartment3)
-    assert_equal renter2, @building.renter_with_highest_rent
+    assert_equal renter1, @building.renter_with_highest_rent
   end
 end
