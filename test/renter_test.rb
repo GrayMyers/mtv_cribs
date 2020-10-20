@@ -1,5 +1,6 @@
 require "minitest/autorun"
 require 'minitest/pride'
+require "./lib/renter.rb"
 
 class RenterTest < Minitest::Test
   def setup
